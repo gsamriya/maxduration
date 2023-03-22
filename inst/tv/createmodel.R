@@ -1,21 +1,35 @@
 #This script was used to create the model that is included with the package
 
-#General Social Survey data
-#For info see http://www3.norc.org/GSS+Website/Download/SPSS+Format/
-download.file("http://publicdata.norc.org/GSS/DOCUMENTS/OTHR/2012_spss.zip", destfile="2012_spss.zip")
-unzip("2012_spss.zip")
-GSS <- foreign::read.spss("GSS2012.sav", to.data.frame=TRUE)
+HMFTempData2 <- read.csv("HMFTempRiseData_Feb2024consolidated.csv")
 
-#GAM model
-library(mgcv)
-mydata <- na.omit(GSS[c("age", "tvhours", "marital")])
-tv_model <- gam(tvhours ~ s(age, by=marital), data = mydata)
+set.seed(4543)
+
+sample_data = sample.split(HMFTempData2, SplitRatio = 0.8)
+train_data <- subset(HMFTempData2, sample_data == TRUE)
+test_data <- subset(HMFTempData2, sample_data == FALSE)
+
+#model
+install.packages('randomForest')
+library(randomForest)
+tv_model <- randomForest( TempRise ~ ., data=train_data, ntree=1000,
+                       keep.forest=TRUE, importance=TRUE)
+
 
 #Vizualize the model
 library(ggplot2)
-qplot(age, predict(tv_model), color=marital, geom="line", data=mydata) +
-  ggtitle("gam(tvhours ~ s(age, by=marital))") +
-  ylab("Average hours of TV per day")
+ImpData <- as.data.frame(importance(tv_model))
+ImpData$Var.Names <- row.names(ImpData)
+ggplot(ImpData, aes(x=Var.Names, y=`%IncMSE`)) +
+  geom_segment( aes(x=Var.Names, xend=Var.Names, y=0, yend=`%IncMSE`), color="skyblue") +
+  geom_point(aes(size = IncNodePurity), color="blue", alpha=0.6) +
+  theme_light() +
+  coord_flip() +
+  theme(
+    legend.position="bottom",
+    panel.grid.major.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank()
+  )
 
 #Save the model
 dir.create("data", showWarnings=FALSE)
