@@ -4,6 +4,11 @@ $(function(){
 		e.preventDefault()
 		$(".TempRisefield").val("")
 		var data = [];
+			};
+		});
+		
+		//RPC request to score data
+		var req = ocpu.rpc("tv", {input : data}, function(output){
 		$("tbody tr").each(function(i){
 			data[i] = {
 				TimeNumber : parseFloat($(this).find(".TimeNumberfield").val()),
@@ -13,11 +18,6 @@ $(function(){
 				SizeBagBig : $(this).find(".SizeBagBigfield").val(),
 				SizeBagSmall : $(this).find(".SizeBagSmallfield").val(),
 				TempRise : $(this).find(".TempRisefield").val()
-			};
-		});
-		
-		//RPC request to score data
-		var req = ocpu.rpc("tv", {input : data}, function(output){
 			//repopulate the table
 			$("tbody tr").each(function(i){
 				$(this).find(".TimeNumberfield").val(output[i].TimeNumber);
@@ -60,7 +60,7 @@ $(function(){
 
 	//this is just to create a table
 	function addrow(){
-		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" class="form-control TimeNumberfield" placeholder="TimeNumber"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control TempOutsidefield" placeholder="TempOutside"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control QuantMilkfield" placeholder="QuantMilk"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control SizeBagBigfield" placeholder="SizeBagBig"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control SizeBagSmallfield" placeholder="SizeBagSmall"> </div> </td> <td> <div class="form-group"> <input disabled="disabled" class="disabled form-control TempRisefield"> </div> </td> </tr>');
+		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" class="form-control TimeNumberfield" placeholder="TimeNumber"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control TempOutsidefield" placeholder="TempOutside"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control QuantMilkfield" placeholder="QuantMilk"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control SizeBagBigfield" placeholder="SizeBagBig"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control SizeBagSmallfield" placeholder="SizeBagSmall"> </div> </td> <td> <div class="form-group"> <input disabled="disabled" class="disabled form-control TempRisefield" placeholder="TempRise"> </div> </td> </tr>');
 	}
 
 	for(var i = 0; i < 5; i++){
