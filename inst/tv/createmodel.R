@@ -8,12 +8,13 @@ sample_data = sample.split(HMFTempData2, SplitRatio = 0.8)
 train_data <- subset(HMFTempData2, sample_data == TRUE)
 test_data <- subset(HMFTempData2, sample_data == FALSE)
 
-#model
-install.packages('randomForest')
-library(randomForest)
-tv_model <- randomForest( TempRise ~ ., data=train_data, ntree=1000,
-                       keep.forest=TRUE, importance=TRUE)
+#model random forrest
+#install.packages('randomForest')
+#library(randomForest)
+#tv_model <- randomForest( TempRise ~ ., data=train_data, ntree=1000, keep.forest=TRUE, importance=TRUE)
 
+#model linear regression
+tv_model <- lm(TempRise~SizeBag_Big+SizeBag_Medium+Quant_Milk+TempOutside+Car, data = train_data)
 
 #Vizualize the model
 library(ggplot2)
