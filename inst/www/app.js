@@ -53,7 +53,7 @@ $(function(){
 		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" min="20" max="80" class="form-control agefield" placeholder="Age"> </div> </td> <td> <div class="form-group"> <select class="form-control maritalfield"> <option>MARRIED</option> <option>DIVORCED</option> <option>WIDOWED</option> <option>NEVER MARRIED</option> </select> </div> </td> <td> <div class="form-group"> <input disabled="disabled" class="disabled form-control tvfield"> </div> </td> </tr>');
 	}
 
-	for(var i = 0; i < 5; i++){
+	for(var i = 0; i < 1; i++){
 		addrow();
 	}
 });
