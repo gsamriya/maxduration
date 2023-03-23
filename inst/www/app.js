@@ -2,32 +2,22 @@ $(function(){
 	//Handler for basic RPC
 	$("#scorebutton").click(function(e){
 		e.preventDefault()
-		$(".TempRisefield").val("")
+		$(".tvfield").val("")
 		var data = [];
+		$("tbody tr").each(function(i){
+			data[i] = {
+				age : parseFloat($(this).find(".agefield").val()),
+				marital : $(this).find(".maritalfield").val()
 			};
 		});
 		
 		//RPC request to score data
 		var req = ocpu.rpc("tv", {input : data}, function(output){
-		$("tbody tr").each(function(i){
-			data[i] = {
-				TimeNumber : parseFloat($(this).find(".TimeNumberfield").val()),
-				TempOutside : $(this).find(".TempOutsidefield").val(),
-				QuantMilk : $(this).find(".QuantMilkfield").val(),
-				Car : $(this).find(".Carfield").val(),
-				SizeBagBig : $(this).find(".SizeBagBigfield").val(),
-				SizeBagSmall : $(this).find(".SizeBagSmallfield").val(),
-				TempRise : $(this).find(".TempRisefield").val()
 			//repopulate the table
 			$("tbody tr").each(function(i){
-				$(this).find(".TimeNumberfield").val(output[i].TimeNumber);
-				$(this).find(".TempOutsidefield").val(output[i].TempOutside);
-				$(this).find(".QuantMilkfield").val(output[i].QuantMilk);
-				$(this).find(".Carfield").val(output[i].Car);
-				$(this).find(".QuantMilkfield").val(output[i].QuantMilk);
-				$(this).find(".SizeBagBigfield").val(output[i].SizeBagBig);
-				$(this).find(".SizeBagSmallfield").val(output[i].SizeBagSmall);
-				$(this).find(".TempRisefield").val(output[i].TempRise);
+				$(this).find(".agefield").val(output[i].age);
+				$(this).find(".maritalfield").val(output[i].marital);
+				$(this).find(".tvfield").val(output[i].tv);
 			});
 		}).fail(function(){
 			alert(req.responseText);
@@ -60,11 +50,10 @@ $(function(){
 
 	//this is just to create a table
 	function addrow(){
-		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" class="form-control TimeNumberfield" placeholder="TimeNumber"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control TempOutsidefield" placeholder="TempOutside"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control QuantMilkfield" placeholder="QuantMilk"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control SizeBagBigfield" placeholder="SizeBagBig"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control SizeBagSmallfield" placeholder="SizeBagSmall"> </div> </td> <td> <div class="form-group"> <input disabled="disabled" class="disabled form-control TempRisefield" placeholder="TempRise"> </div> </td> </tr>');
+		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" min="20" max="80" class="form-control agefield" placeholder="Age"> </div> </td> <td> <div class="form-group"> <select class="form-control maritalfield"> <option>MARRIED</option> <option>DIVORCED</option> <option>WIDOWED</option> <option>NEVER MARRIED</option> </select> </div> </td> <td> <div class="form-group"> <input disabled="disabled" class="disabled form-control tvfield"> </div> </td> </tr>');
 	}
 
 	for(var i = 0; i < 5; i++){
 		addrow();
 	}
 });
-
