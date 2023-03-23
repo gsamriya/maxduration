@@ -11,25 +11,15 @@
 </head>
 <body>
   <div class="container">
-    <h1>Simple scoring engine</h1>
+    <h1>Simple prediction engine</h1>
 
     <p>This app illustrates how to deploy a predictive model, a.k.a. scoring engine using opencpu. This is done by creating an R package which includes a model object, and a function that uses R's <code>predict</code> to "score" new cases based on predictor variables.</p>
     
-    <p>The <a href="../">tvscore</a> package includes a data object <a href="../data/tv_model">tv_model</a> and a <a href="../R/tv">scoring function</a> to predicts hours of watching tv from age and marital status. The model was created using this script: <a href="../tv/createmodel.R"><code>createmodel.R</code></a>. A simple viz of the model looks like this:</p>
+
 
     <img class="center-block img-rounded img-responsive" src="../tv/viz.png">
 
-    <div class="page-header">
-      <h2>Scoring example with curl</h2>
-    </div>
-
-    <p>To call the <code>tv</code> function with <code>curl</code> using basic <a href="https://www.opencpu.org/api.html#api-json">JSON RPC</a>:</p>
-
-    <pre class="highlight" id="curlcode">
-curl https://public.opencpu.org/ocpu/github/opencpu/tvscore/R/tv/json \
--H "Content-Type: application/json" \
--d '{"input" : [ {"age":26, "marital" : "MARRIED"}, {"age":41, "marital":"DIVORCED"}, {"age":53, "marital":"NEVER MARRIED"} ]}'
-</pre>
+  
 
     <div class="page-header">
       <h2>Scoring values with JavaScript</h2>
@@ -40,21 +30,19 @@ curl https://public.opencpu.org/ocpu/github/opencpu/tvscore/R/tv/json \
     <form class="form-inline" role="form">
       <table class="table table-bordered">
         <thead>
-          <tr><th>TimeNumber</th><th>TempOutside</th><th>QuantMilk</th><th>Car</th><th>SizeBagBig</th><th>SizeBagSmall</th><th>TempRise</th></tr>
+          <tr><th>TimeNumber</th><th>TempOutside</th><th>QuantMilk</th><th>SizeBagBig</th><th>SizeBagSmall</th><th>Car</th</tr>
         </thead>
         <tbody>
         </tbody>
       </table>
       <div class="text-center">
-        <button type="button" id="scorebutton" class="btn btn-primary btn-lg">Predict Temp Rise</button>
+        <button type="button" id="scorebutton" class="btn btn-primary btn-lg">Score all values!</button>
       </div>
     </form>
 
     <div class="page-header">
       <h2>Batch score CSV file</h2>
     </div>
-
-    <p>The <a href="../R/tv">scoring function</a> was designed to accept both data as well as a CSV file as input. The example below illustrates batch scoring using CSV files for both input and output. The CSV file must at least contain columns with values for <code>age</code> and <code>marital</code> (<a href="../tv/testdata.csv">example data</a>).</p>
 
     <form role="form">
       <div class="form-group">
