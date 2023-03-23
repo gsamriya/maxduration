@@ -11,17 +11,15 @@ This package illustrates how to deploy a model for remote scoring/prediction.
     # Score in R
     library(tvscore)
     mydata <- data.frame(
-      age=c(24, 54, 32, 75),
-      marital=c("MARRIED", "DIVORCED", "WIDOWED", "NEVER MARRIED")
+      TempOutside=c(9,18,14,27),
+      QuantMilk=c("18", "14", "9", "5")
     )
     tv(input = mydata)
 
     # Score remotely
     curl https://public.opencpu.org/ocpu/github/opencpu/tvscore/R/tv/json \
       -H "Content-Type: application/json" \
-      -d '{"input" : [ {"age":26, "marital" : "MARRIED"}, {"age":41, "marital":"DIVORCED"} ]}'
+      -d '{"input" : [ {"TempOutside":18, "QuantMilk" : 9}, {"TempOutside":27, "QuantMilk":"18"} ]}'
       
 The model is included in the `data` directory of the package, and was created
-using the [createmodel.R](https://github.com/opencpu/tvscore/blob/master/inst/tv/createmodel.R) script. It predicts hours per day of TV watching from age and marital status. The model looks like this:
-
-![model viz](https://raw.githubusercontent.com/opencpu/tvscore/master/inst/tv/viz.png)
+using the [createmodel.R](https://github.com/opencpu/tvscore/blob/master/inst/tv/createmodel.R) script.
