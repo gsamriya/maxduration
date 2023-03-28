@@ -6,8 +6,13 @@ $(function(){
 		var data = [];
 		$("tbody tr").each(function(i){
 			data[i] = {
-				age : parseFloat($(this).find(".agefield").val()),
-				marital : $(this).find(".maritalfield").val()
+	}
+				TimeNumber : parseFloat($(this).find(".timenumfield").val()),
+				TempOutside : parseFloat($(this).find(".tempoutsidefield").val()),
+				QuantMilk : parseFloat($(this).find(".quantmilkfield").val()),
+				SizeBagBig : parseFloat($(this).find(".sizebigfield").val()),
+				SizeBagSmall : parseFloat($(this).find(".sizesmallfield").val()),
+				Car : parseFloat($(this).find(".carfield").val())
 			};
 		});
 		
@@ -15,8 +20,12 @@ $(function(){
 		var req = ocpu.rpc("tv", {input : data}, function(output){
 			//repopulate the table
 			$("tbody tr").each(function(i){
-				$(this).find(".agefield").val(output[i].age);
-				$(this).find(".maritalfield").val(output[i].marital);
+				$(this).find(".timenumfield").val(output[i].timenumber);
+				$(this).find(".tempoutsidefield").val(output[i].tempoutside);
+				$(this).find(".quantmilkfield").val(output[i].quantmilk);
+				$(this).find(".sizebigfield").val(output[i].sizebagbig);
+				$(this).find(".sizesmallfield").val(output[i].sizebagsmall);
+				$(this).find(".carfield").val(output[i].car);
 				$(this).find(".tvfield").val(output[i].tv);
 			});
 		}).fail(function(){
@@ -50,7 +59,7 @@ $(function(){
 
 	//this is just to create a table
 	function addrow(){
-		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" min="20" max="80" class="form-control agefield" placeholder="Age"> </div> </td> <td> <div class="form-group"> <select class="form-control maritalfield"> <option>MARRIED</option> <option>DIVORCED</option> <option>WIDOWED</option> <option>NEVER MARRIED</option> </select> </div> </td> <td> <div class="form-group"> <input disabled="disabled" class="disabled form-control tvfield"> </div> </td> </tr>');
+		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" class="form-control timenumfield" placeholder="TimeNumber"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control tempoutsidefield" placeholder="TempOutside"> </div></td> <td> <div class="form-group"> <input type="number" class="form-control quantmilkfield" placeholder="QuantMilk"> </div></td> <td> <div class="form-group"> <input type="number" class="form-control sizebigfield" placeholder="SizeBagBig"> </div> </td> <td><div class="form-group"> <input type="number" class="form-control sizesmallfield" placeholder="SizeBagSmall"></div></td> <td><div class="form-group"> <input type="number" class="form-control carfield" placeholder="Car"></div></td> <td><div class="form-group"> <input disabled="disabled" class="disabled form-control tvfield" placeholder="TempRise"> </div> </td></tr>');
 	}
 
 	for(var i = 0; i < 5; i++){
