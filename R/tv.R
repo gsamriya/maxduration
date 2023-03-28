@@ -18,10 +18,10 @@ tv <- function(input){
   } else {
     as.data.frame(input)
   }
-  stopifnot("age" %in% names(newdata))
-  stopifnot("marital" %in% names(newdata))
+#'  stopifnot("age" %in% names(newdata))
+#'  stopifnot("marital" %in% names(newdata))
   
-  newdata$age <- as.numeric(newdata$age)
+#'  newdata$age <- as.numeric(newdata$age)
 
   #tv_model is included with the package
   newdata$tv <- as.vector(predict.gam(tv_model, newdata = newdata))
