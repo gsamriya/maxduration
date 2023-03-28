@@ -19,23 +19,11 @@
 
     <img class="center-block img-rounded img-responsive" src="../tv/viz.png">
 
-    <div class="page-header">
-      <h2>Scoring example with curl</h2>
-    </div>
 
-    <p>To call the <code>tv</code> function with <code>curl</code> using basic <a href="https://www.opencpu.org/api.html#api-json">JSON RPC</a>:</p>
-
-    <pre class="highlight" id="curlcode">
-curl https://public.opencpu.org/ocpu/github/opencpu/tvscore/R/tv/json \
--H "Content-Type: application/json" \
--d '{"input" : [ {"age":26, "marital" : "MARRIED"}, {"age":41, "marital":"DIVORCED"}, {"age":53, "marital":"NEVER MARRIED"} ]}'
-</pre>
-
+    <p>In this form, we use the <code>opencpu.js</code> client to score a bunch of values using basic ajax.</p>
     <div class="page-header">
       <h2>Scoring values with JavaScript</h2>
     </div>
-
-    <p>In this form, we use the <code>opencpu.js</code> client to score a bunch of values using basic ajax.</p>
 
     <form class="form-inline" role="form">
       <table class="table table-bordered">
