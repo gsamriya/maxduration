@@ -6,7 +6,6 @@ $(function(){
 		var data = [];
 		$("tbody tr").each(function(i){
 			data[i] = {
-	}
 				TimeNumber : parseFloat($(this).find(".timenumfield").val()),
 				TempOutside : parseFloat($(this).find(".tempoutsidefield").val()),
 				QuantMilk : parseFloat($(this).find(".quantmilkfield").val()),
