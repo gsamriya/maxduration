@@ -17,20 +17,20 @@ test_data <- subset(HMFTempData2, sample_data == FALSE)
 tv_model <- lm(TempRise ~ ., data = train_data)
 
 #Vizualize the model
-library(ggplot2)
-ImpData <- as.data.frame(importance(tv_model))
-ImpData$Var.Names <- row.names(ImpData)
-ggplot(ImpData, aes(x=Var.Names, y=`%IncMSE`)) +
-  geom_segment( aes(x=Var.Names, xend=Var.Names, y=0, yend=`%IncMSE`), color="skyblue") +
-  geom_point(aes(size = IncNodePurity), color="blue", alpha=0.6) +
-  theme_light() +
-  coord_flip() +
-  theme(
-    legend.position="bottom",
-    panel.grid.major.y = element_blank(),
-    panel.border = element_blank(),
-    axis.ticks.y = element_blank()
-  )
+#library(ggplot2)
+#ImpData <- as.data.frame(importance(tv_model))
+#ImpData$Var.Names <- row.names(ImpData)
+#ggplot(ImpData, aes(x=Var.Names, y=`%IncMSE`)) +
+#  geom_segment( aes(x=Var.Names, xend=Var.Names, y=0, yend=`%IncMSE`), color="skyblue") +
+#  geom_point(aes(size = IncNodePurity), color="blue", alpha=0.6) +
+#  theme_light() +
+#  coord_flip() +
+#  theme(
+#    legend.position="bottom",
+#    panel.grid.major.y = element_blank(),
+#    panel.border = element_blank(),
+#    axis.ticks.y = element_blank()
+#  )
 
 #Save the model
 dir.create("data", showWarnings=FALSE)
