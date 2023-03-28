@@ -34,4 +34,4 @@ ggplot(ImpData, aes(x=Var.Names, y=`%IncMSE`)) +
 
 #Save the model
 dir.create("data", showWarnings=FALSE)
-save(tv_model, file="data/tv_model.rda")
+save(tv_model, file="data/tv_model2.rda")
