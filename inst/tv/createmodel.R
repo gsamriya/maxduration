@@ -14,7 +14,7 @@ test_data <- subset(HMFTempData2, sample_data == FALSE)
 #tv_model <- randomForest( TempRise ~ ., data=train_data, ntree=1000, keep.forest=TRUE, importance=TRUE)
 
 #model linear regression
-tv_model <- lm(TempRise~SizeBag_Big+SizeBag_Medium+Quant_Milk+TempOutside+Car, data = train_data)
+tv_model <- lm(TempRise ~ ., data = train_data)
 
 #Vizualize the model
 library(ggplot2)
