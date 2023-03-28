@@ -1,4 +1,14 @@
 $(function(){
+	
+	//this is just to create a table
+	function addrow(){
+		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" class="form-control timenumfield" placeholder="TimeNumber"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control tempoutsidefield" placeholder="TempOutside"> </div></td> <td> <div class="form-group"> <input type="number" class="form-control quantmilkfield" placeholder="QuantMilk"> </div></td> <td> <div class="form-group"> <input type="number" class="form-control sizebigfield" placeholder="SizeBagBig"> </div> </td> <td><div class="form-group"> <input type="number" class="form-control sizesmallfield" placeholder="SizeBagSmall"></div></td> <td><div class="form-group"> <input type="number" class="form-control carfield" placeholder="Car"></div></td> <td><div class="form-group"> <input disabled="disabled" class="disabled form-control tvfield" placeholder="TempRise"> </div> </td></tr>');
+	}
+
+	for(var i = 0; i < 5; i++){
+		addrow();
+	}
+	
 	//Handler for basic RPC
 	$("#scorebutton").click(function(e){
 		e.preventDefault()
@@ -56,12 +66,4 @@ $(function(){
 		)
 	);
 
-	//this is just to create a table
-	function addrow(){
-		$("tbody").append('<tr> <td> <div class="form-group"> <input type="number" class="form-control timenumfield" placeholder="TimeNumber"> </div> </td> <td> <div class="form-group"> <input type="number" class="form-control tempoutsidefield" placeholder="TempOutside"> </div></td> <td> <div class="form-group"> <input type="number" class="form-control quantmilkfield" placeholder="QuantMilk"> </div></td> <td> <div class="form-group"> <input type="number" class="form-control sizebigfield" placeholder="SizeBagBig"> </div> </td> <td><div class="form-group"> <input type="number" class="form-control sizesmallfield" placeholder="SizeBagSmall"></div></td> <td><div class="form-group"> <input type="number" class="form-control carfield" placeholder="Car"></div></td> <td><div class="form-group"> <input disabled="disabled" class="disabled form-control tvfield" placeholder="TempRise"> </div> </td></tr>');
-	}
-
-	for(var i = 0; i < 5; i++){
-		addrow();
-	}
 });
